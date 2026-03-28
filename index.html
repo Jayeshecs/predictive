@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linear Algebra Lab</title>
+
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="vendor/katex/katex.min.css" />
+  <script defer src="vendor/katex/katex.min.js"></script>
+
+  <!-- Math.js -->
+  <script src="vendor/math.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🧮 Linear Algebra Lab</h1>
+    <p class="subtitle">Interactive visualizations for machine learning &amp; predictive analytics</p>
+  </header>
+
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-tab="phase1" role="tab" aria-selected="true">
+      Phase 1<span class="tab-label">Vector Engine</span>
+    </button>
+    <button class="tab-btn" data-tab="phase2" role="tab" aria-selected="false">
+      Phase 2<span class="tab-label">Transformation Matrix</span>
+    </button>
+    <button class="tab-btn" data-tab="phase3" role="tab" aria-selected="false">
+      Phase 3<span class="tab-label">PCA Projection</span>
+    </button>
+    <button class="tab-btn" data-tab="phase4" role="tab" aria-selected="false">
+      Phase 4<span class="tab-label">Linear Regression</span>
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ===================== PHASE 1 ===================== -->
+    <section id="phase1" class="tab-panel active" role="tabpanel">
+      <div class="panel-layout">
+        <div class="canvas-container">
+          <canvas id="canvas-phase1" width="520" height="520"></canvas>
+        </div>
+        <aside class="controls">
+          <h2>Vector Engine</h2>
+          <p class="description">Explore vector addition and scalar multiplication in real time.</p>
+
+          <div class="control-group">
+            <label>Vector <b>V</b> = [<span id="vx-val">3</span>, <span id="vy-val">2</span>]</label>
+            <label>Vx <input type="range" id="vx" min="-5" max="5" step="0.5" value="3" /></label>
+            <label>Vy <input type="range" id="vy" min="-5" max="5" step="0.5" value="2" /></label>
+          </div>
+
+          <div class="control-group">
+            <label>Vector <b>W</b> = [<span id="wx-val">1</span>, <span id="wy-val">3</span>]</label>
+            <label>Wx <input type="range" id="wx" min="-5" max="5" step="0.5" value="1" /></label>
+            <label>Wy <input type="range" id="wy" min="-5" max="5" step="0.5" value="3" /></label>
+          </div>
+
+          <div class="control-group">
+            <label>Scalar <b>k</b> = <span id="k-val">1.0</span></label>
+            <input type="range" id="k-slider" min="-3" max="3" step="0.1" value="1" />
+          </div>
+
+          <div class="math-display" id="phase1-math"></div>
+
+          <div class="legend">
+            <span class="legend-item" style="color:#2196F3">■ V</span>
+            <span class="legend-item" style="color:#4CAF50">■ W</span>
+            <span class="legend-item" style="color:#FF9800">■ k·V</span>
+            <span class="legend-item" style="color:#E91E63">■ V+W</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== PHASE 2 ===================== -->
+    <section id="phase2" class="tab-panel" role="tabpanel">
+      <div class="panel-layout">
+        <div class="canvas-container">
+          <canvas id="canvas-phase2" width="520" height="520"></canvas>
+        </div>
+        <aside class="controls">
+          <h2>Transformation Matrix</h2>
+          <p class="description">Apply a 2×2 linear transformation and watch the grid warp. The dot product is shown live.</p>
+
+          <div class="control-group">
+            <label>Matrix <b>M</b></label>
+            <div class="matrix-input">
+              <div class="matrix-bracket">[</div>
+              <div class="matrix-grid">
+                <input type="number" id="m00" value="1" step="0.1" class="matrix-cell" />
+                <input type="number" id="m01" value="0" step="0.1" class="matrix-cell" />
+                <input type="number" id="m10" value="0" step="0.1" class="matrix-cell" />
+                <input type="number" id="m11" value="1" step="0.1" class="matrix-cell" />
+              </div>
+              <div class="matrix-bracket">]</div>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Vector <b>a</b> = [<span id="a-x-val">2</span>, <span id="a-y-val">1</span>]</label>
+            <label>ax <input type="range" id="a-x" min="-5" max="5" step="0.5" value="2" /></label>
+            <label>ay <input type="range" id="a-y" min="-5" max="5" step="0.5" value="1" /></label>
+          </div>
+
+          <div class="control-group">
+            <label>Vector <b>b</b> = [<span id="b-x-val">1</span>, <span id="b-y-val">3</span>]</label>
+            <label>bx <input type="range" id="b-x" min="-5" max="5" step="0.5" value="1" /></label>
+            <label>by <input type="range" id="b-y" min="-5" max="5" step="0.5" value="3" /></label>
+          </div>
+
+          <div class="math-display" id="phase2-math"></div>
+
+          <div class="legend">
+            <span class="legend-item" style="color:#2196F3">■ î (basis)</span>
+            <span class="legend-item" style="color:#4CAF50">■ ĵ (basis)</span>
+            <span class="legend-item" style="color:#FF9800">■ M·î</span>
+            <span class="legend-item" style="color:#E91E63">■ M·ĵ</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== PHASE 3 ===================== -->
+    <section id="phase3" class="tab-panel" role="tabpanel">
+      <div class="panel-layout">
+        <div class="canvas-container">
+          <canvas id="canvas-phase3" width="520" height="520"></canvas>
+        </div>
+        <aside class="controls">
+          <h2>PCA Projection</h2>
+          <p class="description">Generate a data cloud and find the principal component (direction of maximum variance).</p>
+
+          <div class="control-group">
+            <button id="btn-generate" class="action-btn">🎲 Generate New Data</button>
+            <button id="btn-flatten" class="action-btn secondary">📐 Toggle Projection</button>
+          </div>
+
+          <div class="control-group">
+            <label>Number of Points: <span id="n-points-val">40</span></label>
+            <input type="range" id="n-points" min="10" max="100" step="5" value="40" />
+          </div>
+
+          <div class="control-group">
+            <label>Spread: <span id="spread-val">2.0</span></label>
+            <input type="range" id="spread" min="0.5" max="4" step="0.1" value="2" />
+          </div>
+
+          <div class="math-display" id="phase3-math"></div>
+
+          <div class="legend">
+            <span class="legend-item" style="color:#2196F3">■ Data points</span>
+            <span class="legend-item" style="color:#FF9800">■ PC1 axis</span>
+            <span class="legend-item" style="color:#E91E63">■ Projected points</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== PHASE 4 ===================== -->
+    <section id="phase4" class="tab-panel" role="tabpanel">
+      <div class="panel-layout">
+        <div class="canvas-container">
+          <canvas id="canvas-phase4" width="520" height="520"></canvas>
+          <p class="canvas-hint">👆 Click on the canvas to add data points</p>
+        </div>
+        <aside class="controls">
+          <h2>Linear Regression</h2>
+          <p class="description">Click to place points. The Normal Equation derives the line of best fit instantly.</p>
+
+          <div class="control-group">
+            <button id="btn-clear" class="action-btn secondary">🗑️ Clear Points</button>
+          </div>
+
+          <div class="math-display" id="phase4-math"></div>
+
+          <div class="formula-box">
+            <div id="normal-eq-display"></div>
+          </div>
+
+          <div class="legend">
+            <span class="legend-item" style="color:#2196F3">● Data points</span>
+            <span class="legend-item" style="color:#E91E63">— Best fit line</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Linear Algebra Lab · Built with Math.js &amp; KaTeX · <a href="https://github.com/Jayeshecs/predictive" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <script type="module" src="js/math-engine.js"></script>
+  <script type="module" src="js/render-engine.js"></script>
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
