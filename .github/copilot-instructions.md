@@ -23,10 +23,10 @@ You are an expert Math-Visualizer and Senior Frontend Engineer.
 - Display Dot Product calculation as a sidebar overlay using KaTeX.
 
 ### Phase 3: Dimensionality & Projection (PCA Basis)
-- Implement a 3D-to-2D projection.
-- Generate a random "Data Cloud" of points.
-- Allow the user to "Flatten" data onto the 1D principal component.
-- Use Math.js to calculate the variance of projected points.
+- Implement a 2D PCA projection of data points in the plane.
+- Generate a random 2D "Data Cloud" of points.
+- Allow the user to "Flatten" data by projecting onto the 1D principal component.
+- Use Math.js to calculate the variance of the 1D projected points.
 
 ### Phase 4: The Predictor (Linear Regression)
 - Implement linear regression via the Normal Equation: `x = (AᵀA)⁻¹Aᵀb`.
