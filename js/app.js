@@ -317,5 +317,19 @@ window.addEventListener('resize', () => {
 // ── Initial render ────────────────────────────────────────────────────────────
 
 generateP3();
-renderP1();
-renderP4();
+
+const initialActiveTab = document.querySelector('.tab-btn.active')?.dataset?.tab || 'phase1';
+switch (initialActiveTab) {
+  case 'phase1':
+    renderP1();
+    break;
+  case 'phase2':
+    renderP2();
+    break;
+  case 'phase3':
+    renderP3();
+    break;
+  case 'phase4':
+    renderP4();
+    break;
+}
