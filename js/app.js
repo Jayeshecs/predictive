@@ -73,7 +73,7 @@ function renderMathInline(containerId, latex) {
   const el = document.getElementById(containerId);
   if (!el) return;
   try {
-    katex.render(latex, el, { throwOnError: false, displayMode: true });
+    katex.render(latex, el, { throwOnError: false, displayMode: false });
   } catch {
     el.textContent = latex;
   }
